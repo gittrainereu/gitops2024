@@ -15,5 +15,8 @@ jobs:
         with:
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
       - run: |
-          echo "changes detected"
-   
+          echo "validating lang file"
+          ls -la 
+          git branch 
+          git diff --exit-code HEAD master dist/en/index.html 
+          echo $?
