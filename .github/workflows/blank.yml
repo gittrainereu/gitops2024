@@ -2,6 +2,10 @@ name: Share data between jobs
 
 on: [push]
 
+permissions:                # Job-level permissions configuration starts here
+      contents: write           # 'write' access to repository contents
+      pull-requests: write      # 'write' access to pull requests
+
 jobs:
   is-2nd-lang-changed:
     name: langtest
