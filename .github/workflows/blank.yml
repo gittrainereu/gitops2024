@@ -18,4 +18,4 @@ jobs:
           ls -la 
           git branch 
           git branch -r
-          git diff --names-only HEAD origin/master -- dist/en/index.html
+          git diff --name-only HEAD origin/master -- dist/en/index.html
