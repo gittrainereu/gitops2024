@@ -13,13 +13,16 @@ jobs:
         run: |
           echo "$SUPER_SECRET" 
           echo "foo" > /tmp/myfile 
+          echo 
           echo "OUTPUT 1: -------"
           cat /tmp/myfile 
           echo "EOF OUTPUT1"
+          echo 
           echo "OUTPUT 2: -------"
           echo "$SUPER_SECRET" >> /tmp/myfile 
-          echo "EOF OUTPUT 2"
           cat /tmp/myfile 
+          echo "EOF OUTPUT 2"
+          echo 
           echo "OUTPUT 3: -------"
           echo "foo2" >> /tmp/myfile 
           cat /tmp/myfile 
