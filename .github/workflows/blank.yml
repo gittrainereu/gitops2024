@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - shell: bash
+        env:
+          SUPER_SECRET: ${{ secrets.SECRET_SUPER_SECRET }}
         run: |
-          git --help
-  
+          echo "$SUPER_SECRET" 
+          echo "$SUPER_SECRET" > /tmp/myfile 
+          cat /tmp/myfile 
+ 
