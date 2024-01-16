@@ -15,6 +15,11 @@ jobs:
         with:
           fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
       - run: |
+          ls -la 
+          git branch 
+          git branch -r
+          git diff --exit-code HEAD origin/master dist/en/index.html 
+          echo $?
           echo "validating lang file"
           ls -la 
           git branch 
