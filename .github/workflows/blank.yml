@@ -20,7 +20,7 @@ jobs:
           git branch -r
           COUNT=$(git diff --name-only HEAD origin/master -- dist/en/index.html | grep -c "dist/en/index.html")
           # This shows the output - need to be seperately 
-          if [ $COUNT -eq 0 ] ; then  echo "dist/en/index.html not changed"; else echo "Change in lang detected - Happy"; fi
+          # if [ $COUNT -eq 0 ] ; then  echo "dist/en/index.html not changed"; else echo "Change in lang detected - Happy"; fi
       - run: |
            # do exit 1 in seperate step 
            if [ $COUNT -eq 0 ] ; then exit 1; fi
