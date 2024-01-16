@@ -18,11 +18,4 @@ jobs:
           ls -la 
           git branch 
           git branch -r
-          git diff --exit-code HEAD origin/master dist/en/index.html 
-          echo $?
-          echo "validating lang file"
-          ls -la 
-          git branch 
-          git branch -r
           git diff --exit-code HEAD origin/master dist/en/index.html
-          echo $?
