@@ -21,4 +21,5 @@ jobs:
           git branch -r
           git diff --exit-code HEAD origin/master dist/en/index.html 
           RESULT=$?
+          echo $RESULT
           if [ $RESULT -eq 0 ]; then exit 1; fi
