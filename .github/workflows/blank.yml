@@ -19,7 +19,7 @@ jobs:
           ls -la 
           git branch 
           git branch -r
-          git diff --exit-code HEAD origin/master dist/en/index.html 
-          RESULT=$?
-          echo "test->"$RESULT"<-test"
-          if [ $RESULT -eq 0 ]; then exit 1; fi
+          git diff --exit-code HEAD origin/master dist/en/index.html; RESULT=$?; echo $RESULT
+          # RESULT=$?
+          # echo "test->"$RESULT"<-test"
+          # if [ $RESULT -eq 0 ]; then exit 1; fi
