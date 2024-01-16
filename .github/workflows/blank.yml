@@ -12,18 +12,18 @@ jobs:
           SUPER_SECRET: ${{ secrets.SECRET_SUPER_SECRET }}
         run: |
           echo "$SUPER_SECRET" 
-          echo "foo" > /tmp/myfile 
+          echo "foo" > myfile 
           echo 
           echo "OUTPUT 1: -------"
-          cat /tmp/myfile 
+          cat myfile
           echo "EOF OUTPUT1"
           echo 
           echo "OUTPUT 2: -------"
-          echo "$SUPER_SECRET" >> /tmp/myfile 
-          cat /tmp/myfile 
+          echo "$SUPER_SECRET" >> myfile
+          cat myfile 
           echo "EOF OUTPUT 2"
           echo 
           echo "OUTPUT 3: -------"
-          echo "foo2" >> /tmp/myfile 
-          cat /tmp/myfile 
+          echo "foo2" >> myfile 
+          cat myfile 
           echo "EOF OUTPUT 3"
