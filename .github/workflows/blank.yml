@@ -23,6 +23,6 @@ jobs:
           git diff --name-only HEAD origin/master -- dist/en/index.html >> ANALYZER 
           COUNT=$(cat ANALYZER | grep -cE "(--HEADER--|dist/en/index.html)")
           # 1 - Only HEADER line will be present  
-          # if [ $COUNT -eq 1 ] ; then  echo "dist/en/index.html not changed"; exit 1; else echo "Change in lang detected - Happy"; fi
+          if [ $COUNT -eq 1 ] ; then  echo "dist/en/index.html not changed"; exit 1; else echo "Change in lang detected - Happy"; fi
  
          
