@@ -18,10 +18,11 @@ jobs:
           ls -la 
           git branch 
           git branch -r
-          COUNT=$(git diff --name-only HEAD origin/master -- dist/en/index.html | grep -c "dist/en/index.html")
-          # This shows the output - need to be seperately 
-          # if [ $COUNT -eq 0 ] ; then  echo "dist/en/index.html not changed"; else echo "Change in lang detected - Happy"; fi
-      - run: |
-           # do exit 1 in seperate step 
-           if [ $COUNT -eq 0 ] ; then exit 1; fi
+          # grep always returns 1 by design if does not find a result 
+          echo "--HEADER--" >> ANALYZER 
+          git diff --name-only HEAD origin/master -- dist/en/index.html >> ANALYZER 
+          COUNT=$(cat ANALYZER | grep -cE "(--HEADER--|dist/en/index.html)")
+          # 1 - Only HEADER line will be present  
+          # if [ $COUNT -eq 1 ] ; then  echo "dist/en/index.html not changed"; exit 1; else echo "Change in lang detected - Happy"; fi
+ 
          
