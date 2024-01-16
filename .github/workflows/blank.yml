@@ -18,4 +18,5 @@ jobs:
           ls -la 
           git branch 
           git branch -r
-          git diff --name-only HEAD origin/master -- dist/en/index.html
+          COUNT=$(git diff --name-only HEAD origin/master -- dist/en/index.html | grep -c "dist/en/index.html")
+          if [ $COUNT -eq 0 ] ; then  echo "dist/en/index.html not changed"; exit 1; fi
