@@ -3,47 +3,10 @@ name: Share data between jobs
 on: [push]
 
 jobs:
-  is-2nd-lang-changed:
-    name: langtest
+  job1:
     runs-on: ubuntu-latest
     permissions:                # Job-level permissions configuration starts here
       contents: write           # 'write' access to repository contents
       pull-requests: write      # 'write' access to pull requests
     steps:
-      - uses: actions/checkout@v2    
-        with:
-          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-      - shell: bash
-        env:
-          SUPER_SECRET: ${{ secrets.SECRET_SUPER_SECRET }}
-        run: |
-          echo "$SUPER_SECRET" 
-          echo "foo" > myfile 
-          echo 
-          echo "OUTPUT 1: -------"
-          cat myfile
-          echo "EOF OUTPUT1"
-          echo 
-          echo "OUTPUT 2: -------"
-          echo "$SUPER_SECRET" >> myfile
-          cat myfile 
-          echo "EOF OUTPUT 2"
-          echo 
-          echo "OUTPUT 3: -------"
-          echo "foo2" >> myfile 
-          cat myfile 
-          echo "EOF OUTPUT 3"
-          
-        - name: Commitfiles
-          run: |
-             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-             git config --local user.name "github-actions[bot]"
-             git add -A
-             git commit -a -m "Add changes"
-    
-        - name: Push changes
-          uses: ad-m/github-push-action@master
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            branch: ${{ github.ref }}
+      - uses: actions/checkout@v4
