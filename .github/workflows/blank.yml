@@ -10,3 +10,6 @@ jobs:
       pull-requests: write      # 'write' access to pull requests
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+   
