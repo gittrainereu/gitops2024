@@ -2,6 +2,8 @@ name:
 
 on:
   push:
+    branches:    
+      - 'features/**'
     paths:
       - 'dist/index.html'
 
