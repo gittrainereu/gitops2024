@@ -1,30 +1,21 @@
-name: langchecker
+name: stepscheck
 
-on:
-  pull_request:
-    types:
-      [opened,reopened]
-    branches:    
-      - master 
-    paths:
-      - 'dist/index.html'
-
+on: 
+  push:
+ 
 jobs:
-  translation-check:
+  job1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
-      - run: |
-          ls -la 
-          git branch 
-          git branch -r
-          # grep always returns 1 by design if does not find a result 
-          echo "--HEADER--" > ANALYZER 
-          git diff --name-only HEAD origin/master -- dist/en/index.html >> ANALYZER 
-          COUNT=$(cat ANALYZER | grep -cE "(--HEADER--|dist/en/index.html)")
-          # 1 - Only HEADER line will be present  
-          if [ $COUNT -eq 1 ] ; then  echo "dist/en/index.html not changed"; exit 1; else echo "Change in lang detected - Happy"; fi
- 
+    
+      - name: Set color
+        id: color-selector
+        run: |
+          echo $GITHUB_OUTPUT
+          echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
+      - name: Get color
+        env:
+          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
+        run: echo "The selected color is $SELECTED_COLOR"
+
          
