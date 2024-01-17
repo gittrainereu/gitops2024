@@ -1,9 +1,11 @@
 name: langchecker
 
 on:
-  push:
+  pull_request:
+    types:
+      [opened,reopened]
     branches:    
-      - 'feature/**'
+      - master 
     paths:
       - 'dist/index.html'
 
