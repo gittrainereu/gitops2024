@@ -21,11 +21,12 @@ jobs:
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
     - name: connect and execute
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -la"
-    - name: synchronize 
-      run: rsync -avz dist/ root@${{ secrets.SSH_HOST }}:/var/www/html/ 
     - name: infos
       run: |
         ls -la
         env
+    - name: synchronize 
+      run: rsync -avz dist/ root@${{ secrets.SSH_HOST }}:/var/www/html/ 
+   
     - name: cleanup
       run: rm -rf ~/.ssh
