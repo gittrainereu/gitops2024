@@ -19,7 +19,7 @@ jobs:
           git branch 
           git branch -r
           # grep always returns 1 by design if does not find a result 
-          echo "--HEADER--" >> ANALYZER 
+          echo "--HEADER--" > ANALYZER 
           git diff --name-only HEAD origin/master -- dist/en/index.html >> ANALYZER 
           COUNT=$(cat ANALYZER | grep -cE "(--HEADER--|dist/en/index.html)")
           # 1 - Only HEADER line will be present  
