@@ -22,6 +22,6 @@ jobs:
     - name: connect and execute
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -la"
     - name: synchronize 
-      run: rsync -avz ./dist root@${{ secrets.SSH_HOST }}:/var/www/html/ 
+      run: rsync -avz dist/ root@${{ secrets.SSH_HOST }}:/var/www/html/ 
     - name: cleanup
       run: rm -rf ~/.ssh
