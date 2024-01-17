@@ -23,5 +23,9 @@ jobs:
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -la"
     - name: synchronize 
       run: rsync -avz dist/ root@${{ secrets.SSH_HOST }}:/var/www/html/ 
+    - name: infos
+      run: |
+        ls -la
+        env
     - name: cleanup
       run: rm -rf ~/.ssh
