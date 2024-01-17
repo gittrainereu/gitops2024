@@ -21,7 +21,7 @@ jobs:
     
     # needs a succesful build 
     # THAT IS IMPORTANT 
-    # needs: build 
+    needs: build 
     runs-on: ubuntu-latest 
 
     # Steps represent a sequence of tasks that will be executed as part of the job
