@@ -1,21 +1,26 @@
-name: stepscheck
-
-on: 
+on:
   push:
- 
+    branches:
+      - main
+  workflow_dispatch:
+  
 jobs:
-  job1:
+  run_pull:
+    name: run pull
+    # That is the image we are running on 
     runs-on: ubuntu-latest
-    steps:
     
-      - name: Set color
-        id: color-selector
-        run: |
-          echo $GITHUB_OUTPUT # test
-          echo "SELECTED_COLOR=green" >> "$GITHUB_OUTPUT"
-      - name: Get color
-        env:
-          SELECTED_COLOR: ${{ steps.color-selector.outputs.SELECTED_COLOR }}
-        run: echo "The selected color is $SELECTED_COLOR"
-
-         
+    steps:
+    - name: install ssh keys
+      # check this thread to understand why its needed:
+      # https://stackoverflow.com/a/70447517
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+    - name: connect and execute
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -la"
+    - name: synchronize 
+      run: rsync -avz ./dist root@${{ secrets.SSH_HOST }}:/var/www/html/ 
+    - name: cleanup
+      run: rm -rf ~/.ssh
